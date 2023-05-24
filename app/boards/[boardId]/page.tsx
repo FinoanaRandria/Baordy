@@ -21,6 +21,10 @@ export default async function BoardPage({
   const propositions = await prisma.proposition.findMany({
     where: {
       boardId: boardId
+    },orderBy:{
+        vote:{
+             _count:'desc'
+        }
     },
     select:{
         title: true,
@@ -37,7 +41,7 @@ export default async function BoardPage({
     <div className='flex flex-col gap-8'>
               <PropositionForm boardId={boardId}/>
         
-         <ul>
+         <ul className='flex flex-col gap-4'>
             
              {propositions.map(proposition=>(
                  <Proposition key={proposition.id} voteCount={proposition._count.vote}  {...proposition}/>
