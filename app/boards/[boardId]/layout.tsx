@@ -31,9 +31,9 @@ export default async function layoutBaord(
 
 
   return (
-    <div  className='flex flex-col gap-6'> layoutBaord
+    <div  className='flex flex-col gap-6'> {/* layoutBaord */}
 
-        <h2 > Baords {params.boardId}</h2> 
+        {/* <h2 > Baords {params.boardId}</h2>  */}
              
              <h1 className='text-4xl font-bold'>
         {
