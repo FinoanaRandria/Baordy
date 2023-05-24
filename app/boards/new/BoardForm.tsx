@@ -23,7 +23,8 @@ export default function BoardForm() {
       })
       .then((res)=>res.json())
       .then((data)=>{
-         router.push('/')
+        /*  router.push('/') */
+        router.refresh();
          
       })
       

@@ -1,24 +1,39 @@
-import { throws } from 'assert';
+
+import { notFound } from 'next/navigation';
 import React from 'react'
-import { json } from 'stream/consumers';
 
-export default function BaordPage({
-    params,
-    searchParams,
-  }: {
-    params: { baordId: string };
-    searchParams: { [key: string]: string | string[] | undefined };
-  }) {
+import { prisma } from '~/src/db/prisma';
+export default async function BoardPage({
+  params,
  
-    
+}: {
+  params: { boardId: string };
 
+}) {
+
+  const boardId = Number(params.boardId)
+
+  if (isNaN(boardId)) {
+    return notFound()
+  }
+
+  const board = await prisma.board.findUnique({
+    where: {
+      id: boardId
+    }
+  })
+ 
   return (
     <div>
-          
-           
-          
-         <p>  {params.baordId}</p>
-         {JSON.stringify(searchParams)}
+
+
+
+
+      <h1>
+        {
+          board?.title
+        }
+      </h1>
     </div>
   )
 }
